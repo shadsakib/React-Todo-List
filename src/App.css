@@ -1,0 +1,85 @@
+body {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.App {
+  text-align: center;
+  background: greenyellow;
+  display: "flex";
+  flex-direction: "column";
+  justify-content: "space-around";
+  height: 100vh;
+  overflow: scroll;
+  font-family: cursive;
+  font-weight: 500;
+}
+
+.main {
+  text-align: center;
+}
+
+.container1 {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+  justify-content: center;
+}
+
+.box {
+  margin: 10px;
+}
+
+li {
+  background: plum;
+  margin-bottom: 20px;
+  height: 40px;
+  list-style-position: inside;
+  width: 95%;
+  border-radius: 15px;
+}
+
+.listitem {
+  display: flex;
+  justify-content: space-around;
+}
+
+.listitem button {
+  height: 35px;
+}
+
+.taskname,
+.date {
+  width: 20%;
+  text-align: center;
+  margin: auto 0;
+}
+
+button {
+  border-radius: 15px;
+  margin: 0 10px;
+}
+
+button:hover:enabled {
+  background: rgb(211, 128, 128);
+  cursor: pointer;
+}
+
+.box input {
+  border-radius: 10px;
+  height: 25px;
+  margin-top: 10px;
+}
+
+.options input {
+  border-radius: 10px;
+}
+
+button .nohover {
+  pointer-events: none;
+}
+
+.box button {
+  height: 30px;
+  margin-top: 20px;
+}
