@@ -48,7 +48,6 @@ function ListItem({
         <button
           onClick={() => {
             const newList = Array.from(list).filter((item, i) => i !== id);
-            console.log(newList);
             setList(newList);
             if (updateId === id) {
               setUpdate(false);

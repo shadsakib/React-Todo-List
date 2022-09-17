@@ -1,7 +1,7 @@
 import React from "react";
 
 function SearchBox(props) {
-  const { list, setList, searchQuery, setSearchQuery } = props;
+  const { searchQuery, setSearchQuery } = props;
 
   return (
     <div className="box">

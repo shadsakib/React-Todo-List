@@ -23,6 +23,7 @@ function TodoList(props) {
           .map((listItem, i) => (
             <ListItem
               id={i}
+              key={i}
               name={listItem}
               list={list}
               setList={setList}

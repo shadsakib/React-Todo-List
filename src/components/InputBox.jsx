@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 
 function InputBox(props) {
   const { list, setList, input, setInput, update, setUpdate, updateId } = props;
-
-  console.log(update);
 
   return (
     <div className="box">
