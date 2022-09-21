@@ -3,11 +3,13 @@ import "./App.css";
 import TodoList from "./components/TodoList.jsx";
 import InputBox from "./components/InputBox.jsx";
 import SearchBox from "./components/SearchBox.jsx";
+import useLocalStorage from "./hooks/useLocalStorage.js";
+import useInput from "./hooks/useInput.js";
 
 function App() {
-  const [list, setList] = useState(["Walk", "Stretch", "Clean"]);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [input, setInput] = useState("");
+  const [list, setList] = useLocalStorage("todoList");
+  const [searchQuery, , onSearchChange] = useInput("");
+  const [input, setInput, onInputChange, resetInput] = useInput("");
   const [update, setUpdate] = useState(false);
   const [updateId, setUpdateId] = useState();
 
@@ -21,7 +23,8 @@ function App() {
             list={list}
             setList={setList}
             input={input}
-            setInput={setInput}
+            onChange={onInputChange}
+            resetInput={resetInput}
             update={update}
             setUpdate={setUpdate}
             updateId={updateId}
@@ -30,7 +33,7 @@ function App() {
             list={list}
             setList={setList}
             searchQuery={searchQuery}
-            setSearchQuery={setSearchQuery}
+            onChange={onSearchChange}
           />
         </div>
         <TodoList

@@ -1,19 +1,21 @@
 import React from "react";
 
 function InputBox(props) {
-  const { list, setList, input, setInput, update, setUpdate, updateId } = props;
+  const {
+    list,
+    setList,
+    input,
+    onChange,
+    resetInput,
+    update,
+    setUpdate,
+    updateId,
+  } = props;
 
   return (
     <div className="box">
       <div> Add task </div>
-      <input
-        value={input}
-        id="addItem"
-        type="text"
-        onChange={(e) => {
-          setInput(e.target.value);
-        }}
-      />
+      <input value={input} id="addItem" type="text" onChange={onChange} />
       <div>
         {update ? (
           <button
@@ -24,7 +26,7 @@ function InputBox(props) {
                 newList[index] = input;
                 setList(newList);
                 setUpdate(false);
-                setInput("");
+                resetInput();
                 alert("Updated!");
               }
             }}
@@ -37,7 +39,7 @@ function InputBox(props) {
             onClick={() => {
               if (input) {
                 setList([...list, input]);
-                setInput("");
+                resetInput();
               }
             }}
           >

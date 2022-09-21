@@ -1,7 +1,7 @@
 import React from "react";
 
 function SearchBox(props) {
-  const { searchQuery, setSearchQuery } = props;
+  const { searchQuery, onChange } = props;
 
   return (
     <div className="box">
@@ -10,20 +10,8 @@ function SearchBox(props) {
         value={searchQuery}
         id="searchItem"
         type="text"
-        onChange={(e) => {
-          setSearchQuery(e.target.value);
-        }}
+        onChange={onChange}
       />
-      {/* <button
-      // onClick={() => {
-      //   const newList = list.filter((item) => item.startsWith(searchQuery));
-      //   setList(newList); */}
-      {/* //   setSearchQuery("");
-      // }}
-    //   > */}
-      {/* //     {" "}
-    //     Search Task{" "}
-    //   </button> */}
     </div>
   );
 }
