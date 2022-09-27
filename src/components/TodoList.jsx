@@ -17,7 +17,7 @@ function TodoList(props) {
       <h1> Your List</h1>
       <ol>
         {tasks
-          .filter((listItem) => listItem.name.startsWith(searchQuery))
+          .filter((listItem) => listItem.name?.startsWith(searchQuery))
           .map((listItem, i) => (
             <ListItem
               id={i}
