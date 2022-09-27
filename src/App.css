@@ -83,3 +83,41 @@ button .nohover {
   height: 30px;
   margin-top: 20px;
 }
+
+.parent {
+  height: 100vh;
+  background: rgb(182, 246, 170);
+}
+
+.space {
+  height: 10vh;
+}
+.taskview {
+  text-align: center;
+  background: greenyellow;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 80vh;
+  width: 80vw;
+  font-family: cursive;
+  font-weight: 500;
+  margin: auto auto;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:hover,
+.tasktext {
+  color: rgb(84, 113, 238);
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: rgb(13, 203, 13);
+}

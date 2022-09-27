@@ -3,13 +3,13 @@ import { useState } from "react";
 function useInput(initialValue) {
   const [value, setValue] = useState(initialValue);
 
-  function handleChange(e) {
+  const handleChange = function (e) {
     setValue(e.target.value);
-  }
+  };
 
-  function resetInput() {
+  const resetInput = function () {
     setValue("");
-  }
+  };
 
   return [value, setValue, handleChange, resetInput];
 }

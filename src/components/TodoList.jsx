@@ -1,38 +1,31 @@
 import React from "react";
 import ListItem from "./ListItem.jsx";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 function TodoList(props) {
-  const {
-    list,
-    setList,
-    searchQuery,
-    input,
-    setInput,
-    update,
-    setUpdate,
-    updateId,
-    setUpdateId,
-  } = props;
+  const { searchQuery, setInput } = props;
+
+  const tasks = useSelector((state) => state.tasks);
+
+  useEffect(() => {
+    if (tasks.length) localStorage.setItem("todoList", JSON.stringify(tasks));
+  }, [tasks]);
 
   return (
     <div>
       <h1> Your List</h1>
       <ol>
-        {Array.from(list)
-          .filter((listItem) => listItem.startsWith(searchQuery))
+        {tasks
+          .filter((listItem) => listItem.name.startsWith(searchQuery))
           .map((listItem, i) => (
             <ListItem
               id={i}
               key={i}
-              name={listItem}
-              list={list}
-              setList={setList}
-              input={input}
+              name={listItem.name}
+              date={listItem.date}
+              completed={listItem.completed}
               setInput={setInput}
-              update={update}
-              setUpdate={setUpdate}
-              updateId={updateId}
-              setUpdateId={setUpdateId}
             />
           ))}
       </ol>
