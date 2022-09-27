@@ -1,6 +1,7 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 
-const initialTasks = JSON.parse(localStorage.getItem("todoList"));
+const storedData = JSON.parse(localStorage.getItem("todoList"));
+const initialTasks = storedData ? storedData : [];
 
 function taskReducer(tasks = initialTasks, action) {
   if (action.type === "task/add") {
