@@ -7,7 +7,7 @@ function TaskView() {
 
   const currentTask = useSelector((state) => state.tasks[id]);
   const { completed, date } = currentTask;
-  console.log(completed);
+
   return (
     <div className="parent">
       <div className="space"> </div>
@@ -16,11 +16,7 @@ function TaskView() {
         <h1> {taskName} </h1>
         <div>
           {" "}
-          <bold>
-            {" "}
-            <span className="tasktext"> Date added: </span>{" "}
-          </bold>{" "}
-          {date}{" "}
+          <span className="tasktext"> Date added: </span> {date}{" "}
         </div>
         <div>
           {" "}

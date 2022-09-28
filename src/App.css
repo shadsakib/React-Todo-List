@@ -46,6 +46,7 @@ li {
 
 .listitem button {
   height: 35px;
+  margin: 0 10px;
 }
 
 .taskname,
@@ -58,11 +59,6 @@ li {
 button {
   border-radius: 15px;
   margin: 0 10px;
-}
-
-button:hover:enabled {
-  background: rgb(211, 128, 128);
-  cursor: pointer;
 }
 
 .box input {
@@ -120,4 +116,14 @@ a:hover,
 
 .green {
   color: rgb(13, 203, 13);
+}
+
+.serial {
+  margin: auto 0;
+  text-align: center;
+}
+
+.colorfade {
+  color: rgb(237, 211, 237);
+  text-decoration: line-through;
 }

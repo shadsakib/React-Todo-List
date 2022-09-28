@@ -8,11 +8,10 @@ function useLocalStorage() {
     if (dataToLoad) setData(dataToLoad);
   }, []);
 
-  useEffect(() => {
-    if (data.length) localStorage.setItem("todoList", JSON.stringify(data));
-  }, [data]);
+  useEffect(() => {}, [data]);
 
   return [data, setData];
 }
 
 export default useLocalStorage;
+if (data.length) localStorage.setItem("todoList", JSON.stringify(data));

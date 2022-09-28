@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  removeTask,
-  updateOn,
-  updateOff,
-  setUpdateId,
-  unsetUpdateId,
-  updateTask,
-} from "../actions/actions";
+import { IconButton, Checkbox } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+
+import { removeTask, updateTask } from "../store/taskSlice";
+import { updateOn, updateOff } from "../store/updateSlice";
+import { setUpdateId, unsetUpdateId } from "../store/updateIdSlice";
 
 function ListItem({ id, name, date, completed, setInput }) {
   const [checkBox, setCheckBox] = useState(completed);
   const dispatch = useDispatch();
-  const update = useSelector((state) => state.update);
   const updateId = useSelector((state) => state.updateId);
 
   const setInputBoxForUpdate = function () {
@@ -34,62 +32,54 @@ function ListItem({ id, name, date, completed, setInput }) {
     }
   };
 
+  const handleCheckboxChange = function (e) {
+    setCheckBox(e.target.checked);
+
+    const payload = {
+      newValue: { completed: e.target.checked },
+      id: id,
+    };
+    dispatch(updateTask(payload));
+  };
+
   return (
     <li className="listitem">
+      {/* <div>
+        <span className="serial"> {id} </span>
+      </div> */}
+
       <div className="taskname">
-        {checkBox ? (
-          <span>
+        <span>
+          <Link to={`/task/${name}`} state={id}>
             {" "}
-            <strike>
-              {" "}
-              <Link to={`/task/${name}`} state={id}>
-                {" "}
-                {name}{" "}
-              </Link>{" "}
-            </strike>{" "}
-          </span>
-        ) : (
-          <span>
-            {" "}
-            <Link to={`/task/${name}`} state={id}>
-              {" "}
-              {name}{" "}
-            </Link>{" "}
-          </span>
-        )}
+            <span className={checkBox ? "colorfade" : ""}> {name} </span>{" "}
+          </Link>{" "}
+        </span>
       </div>
 
       <div className="options">
-        <input
-          className="checkbox"
-          type="checkbox"
+        <Checkbox
           checked={completed}
-          onChange={(e) => {
-            setCheckBox(e.target.checked);
-            const payload = {
-              newValue: { completed: e.target.checked },
-              id: id,
-            };
-            dispatch(updateTask(payload));
-          }}
+          color={completed ? "success" : "error"}
+          onChange={handleCheckboxChange}
         />
-        <button
-          className={`${update} && 'nohover'`}
+        <IconButton
+          size="small"
           onClick={setInputBoxForUpdate}
           disabled={id === updateId}
+          color="default"
         >
-          {" "}
-          Update{" "}
-        </button>
-        <button
+          <EditIcon />
+        </IconButton>
+        <IconButton
           onClick={() => {
             deleteTask();
             resetInputBox();
           }}
+          color="default"
         >
-          {" "}
-          Delete{" "}
-        </button>
+          <DeleteIcon />
+        </IconButton>
       </div>
       <div className="date">
         <span>{date}</span>

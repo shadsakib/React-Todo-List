@@ -1,11 +1,12 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  addTask,
-  updateTask,
-  updateOff,
-  unsetUpdateId,
-} from "../actions/actions";
+import { TextField, Button } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import UpdateIcon from "@mui/icons-material/Update";
+
+import { addTask, updateTask } from "../store/taskSlice";
+import { updateOff } from "../store/updateSlice";
+import { unsetUpdateId } from "../store/updateIdSlice";
 
 function InputBox(props) {
   const { input, onChange, resetInput } = props;
@@ -16,7 +17,7 @@ function InputBox(props) {
 
   const dispatch = useDispatch();
 
-  const addTask1 = function () {
+  const handleAddTask = function () {
     if (input) {
       // setList((prevList) => [...prevList, input]);
       const task = { name: input, completed: false, date: getFormattedDate() };
@@ -28,7 +29,7 @@ function InputBox(props) {
     }
   };
 
-  const updateTask1 = function () {
+  const handleUpdateTask = function () {
     if (input) {
       // setList((prevList) => {
       //   const index = prevList.findIndex((_, id) => id === updateId);
@@ -38,7 +39,6 @@ function InputBox(props) {
       // });
       const updatedTask = {
         name: input,
-        completed: tasks[updateId].completed,
         date: getFormattedDate(),
       };
 
@@ -51,15 +51,45 @@ function InputBox(props) {
     }
   };
 
+  const handleEnterKeyPress = function (e) {
+    if (e.key === "Enter") {
+      update ? handleUpdateTask() : handleAddTask();
+    }
+  };
+
   return (
     <div className="box">
-      <div> Add task </div>
-      <input value={input} id="addItem" type="text" onChange={onChange} />
+      {/* <div> Add task </div> */}
+      <TextField
+        className="textfield"
+        value={input}
+        id="addItem"
+        label="Task"
+        variant="outlined"
+        onChange={onChange}
+        onKeyDown={handleEnterKeyPress}
+        InputProps={{ style: { background: "white" } }}
+        size="small"
+      />
       <div>
         {update ? (
-          <button onClick={updateTask1}> Update </button>
+          <Button
+            variant="contained"
+            startIcon={<UpdateIcon />}
+            onClick={handleUpdateTask}
+          >
+            {" "}
+            Update{" "}
+          </Button>
         ) : (
-          <button onClick={addTask1}> Add </button>
+          <Button
+            variant="contained"
+            startIcon={<AddIcon />}
+            onClick={handleAddTask}
+          >
+            {" "}
+            Add{" "}
+          </Button>
         )}
       </div>
     </div>

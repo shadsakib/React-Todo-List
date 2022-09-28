@@ -9,7 +9,7 @@ function TodoList(props) {
   const tasks = useSelector((state) => state.tasks);
 
   useEffect(() => {
-    if (tasks.length) localStorage.setItem("todoList", JSON.stringify(tasks));
+    localStorage.setItem("todoList", JSON.stringify(tasks));
   }, [tasks]);
 
   return (
